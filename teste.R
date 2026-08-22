@@ -10,6 +10,8 @@ dados <- data.frame(
     temperatura = c(20, 22, 25, 28, 26, 23)
 )
 
+# teste chato 
+S
 # Gráfico de linha
 ggplot(dados, aes(x = mes, y = temperatura, group = 1)) +
     geom_line(color = "steelblue", linewidth = 1.2) +
