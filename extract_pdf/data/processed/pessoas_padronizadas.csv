@@ -1,0 +1,5 @@
+nome,aka,data_nascimento_original,endereco,cep_original,telefone_original,cpf_original,cpf,cep,telefone,cpf_formatado,cep_formatado,telefone_formatado
+Jon Snow,Aegon Targaryen,12-12-281d.C,"Rua Winterfell, 42, Westeros.",32722-000,(12) 92134-9999,876.946.333-90,87694633390,32722000,12921349999,876.946.333-90,32722-000,(12) 92134-9999
+"Gandalf, O Cinzento","Gandalf, O Branco",12-12-1000,"Rua do Condado, SN, Terra média",NA,(84) 977724242,000.321.333-90,00032133390,NA,84977724242,000.321.333-90,NA,(84) 97772-4242
+Paul Atreides,Muad'Dib,12/12/10.175d.G.,"Sietch Tabr, Arakis",90079-876,84 97772 4242,00032133390,00032133390,90079876,84977724242,000.321.333-90,90079-876,(84) 97772-4242
+Geralt de Rívia,O Carniceiro de Blaviken,12/dec/1217,"Kaer Morhen, SN, Known",00,84977724242,000000000-00,00000000000,00,84977724242,000.000.000-00,00,(84) 97772-4242
