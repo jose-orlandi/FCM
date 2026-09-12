@@ -1,176 +1,112 @@
-# Ferramentas Computacionais para Modelagem
+# Projeto FCM
 
-## Análise de Pokémon com K-means
+Este repositório reúne os principais materiais desenvolvidos na disciplina de Ferramentas Computacionais para Modelagem, com foco em processamento de dados, extração de informações a partir de PDFs e análise exploratória em R.
 
-Este projeto foi desenvolvido como parte da disciplina **Ferramentas Computacionais para Modelagem**.
+## Visão geral
 
-A ideia do exercício é usar um conjunto de dados de Pokémon para aplicar uma técnica simples de **aprendizado não supervisionado** e, depois, visualizar os resultados de uma forma que seja fácil de interpretar.
+O projeto contempla atividades de:
 
-Como os Pokémon possuem vários atributos de batalha, a proposta foi verificar se esses atributos permitem encontrar grupos de Pokémon com características semelhantes.
-
-Para isso, foi utilizado o algoritmo **K-means**, considerando quatro grupos. Depois do agrupamento, os clusters foram organizados de acordo com seus valores médios de atributos e receberam, de forma mais intuitiva e também um pouco "na brincadeira", os nomes:
-
-* **Fraco**
-* **Médio**
-* **Forte**
-* **Lendário**
-
-Vale destacar que essas categorias não são classificações oficiais dos Pokémon. Elas são apenas uma forma de interpretar os grupos encontrados pelo algoritmo.
+- limpeza e padronização de bases de dados;
+- extração textual de documentos em PDF;
+- organização de dados processados em formatos estruturados;
+- análise estatística e visualização em R;
+- apoio à reprodução de experimentos e relatórios da disciplina.
 
 ---
 
-## Sobre os dados
-
-O conjunto de dados contém informações sobre diferentes Pokémon, incluindo:
-
-* HP
-* Attack
-* Defense
-* Sp. Attack
-* Sp. Defense
-* Speed
-* Tipo principal
-* Tipo secundário
-* Altura
-* Peso
-* Número na Pokédex
-
-Para o agrupamento, foram utilizados apenas os seis atributos de batalha:
-
-`HP`, `Attack`, `Defense`, `Sp. Attack`, `Sp. Defense` e `Speed`.
-
-Além disso, foi calculado o **Total Stats**, que corresponde à soma desses seis atributos.
-
----
-
-## Metodologia
-
-### 1. Preparação dos dados
-
-Os seis atributos de batalha foram selecionados para a análise.
-
-Como o K-means utiliza distância euclidiana para determinar a proximidade entre as observações, os atributos foram **padronizados** antes da aplicação do algoritmo.
-
-Isso evita que uma variável tenha influência excessiva apenas por estar originalmente em uma escala diferente das demais.
-
-### 2. K-means
-
-Foi utilizado o algoritmo K-means com:
-
-* **4 clusters**
-* **50 inicializações (`nstart = 50`)**
-* semente aleatória fixa (`set.seed(123)`)
-
-O algoritmo agrupa os Pokémon de acordo com a similaridade dos seus atributos de batalha.
-
-Depois do agrupamento, os clusters são ordenados pela média de seus `Total Stats`.
-
-Assim, o cluster com menor média recebe o nome **Fraco**, enquanto o de maior média recebe o nome **Lendário**.
-
-### 3. Seleção dos Pokémon de destaque
-
-Para facilitar a leitura do gráfico, foram selecionados os **10 Pokémon com maior Total Stats**.
-
-Esses Pokémon recebem um destaque visual e seus nomes são apresentados diretamente no gráfico.
-
----
-
-## Visualização
-
-O gráfico principal foi desenvolvido utilizando o **ggplot2**.
-
-A visualização apresenta:
-
-* **Eixo X:** Attack
-* **Eixo Y:** Defense
-* **Cor:** classe obtida pelo K-means
-* **Tamanho dos pontos:** HP
-* **Rótulos:** Top 10 Pokémon em Total Stats
-
-Dessa forma, o gráfico permite observar simultaneamente a relação entre Attack e Defense, a classificação dos clusters e a magnitude do HP.
-
-A figura também é exportada em dois formatos:
-
-* PNG, com resolução de 300 dpi
-* PDF, em formato vetorial
-
-Os arquivos são armazenados automaticamente na pasta `output/`.
-
----
-
-## Estrutura do projeto
+## Estrutura do repositório
 
 ```text
 Projeto_FCM/
-│
-├── pokemon.R
-├── pokemon.csv
+├── README.md
+├── Pokemon_full.csv
+├── cadastro.pdf
+├── Peru - Evento 4732.pdf
+├── teste.R
+├── teste.txt
+├── extract_pdf/
+│   ├── read_pdf_cadastros.R
+│   ├── read_pdf_peru.R
+│   └── data/
+│       ├── gadm/
+│       │   └── gadm41_PER_1_pk.rds
+│       ├── processed/
+│       │   ├── estatisticas.csv
+│       │   ├── outbreaks_extraidos.csv
+│       │   ├── pessoas_padronizadas.csv
+│       │   └── qualidade_extracao.csv
+│       └── raw/
 ├── output/
-│   ├── pokemon_kmeans_top10.png
-│   └── pokemon_kmeans_top10.pdf
-└── README.md
+└── .git/
 ```
+
+---
+
+## Principais arquivos
+
+### 1. Base de dados e scripts gerais
+
+- `Pokemon_full.csv`: conjunto de dados de Pokémon utilizado em exercícios de modelagem e clustering.
+- `teste.R`: script de apoio para testes e experimentos em R.
+- `teste.txt`: arquivo complementar de referência.
+
+### 2. Extração de dados em PDF
+
+A pasta `extract_pdf/` contém os principais scripts do projeto:
+
+- `read_pdf_cadastros.R`: extração e padronização de registros de cadastros pessoais.
+- `read_pdf_peru.R`: processamento de dados epidemiológicos relacionados ao Peru, incluindo limpeza e análise espacial.
+
+Os resultados intermediários e processados são armazenados em:
+
+- `extract_pdf/data/processed/pessoas_padronizadas.csv`
+- `extract_pdf/data/processed/qualidade_extracao.csv`
+- `extract_pdf/data/processed/estatisticas.csv`
+- `extract_pdf/data/processed/outbreaks_extraidos.csv`
+
+---
+
+## Objetivos do projeto
+
+O repositório foi organizado para demonstrar e praticar:
+
+- leitura de dados em diferentes formatos;
+- normalização e validação de registros;
+- extração de texto a partir de PDFs;
+- manipulação e organização de dados em R;
+- geração de arquivos estruturados para análise posterior;
+- apoio à documentação e reprodução de resultados acadêmicos.
 
 ---
 
 ## Tecnologias utilizadas
 
-A análise foi desenvolvida em **R**, utilizando principalmente:
+Os scripts foram desenvolvidos principalmente em R, com uso de pacotes como:
 
-* `readr` — leitura dos dados
-* `dplyr` — manipulação dos dados
-* `ggplot2` — criação dos gráficos
-* `ggrepel` — posicionamento dos rótulos no gráfico
-* `kmeans` — agrupamento não supervisionado
+- `dplyr` para manipulação de dados;
+- `stringr` para limpeza e tratamento de strings;
+- `readr` para leitura de arquivos tabulares;
+- `pdftools` para extração de texto de PDF;
+- `ggplot2` para visualização de resultados;
+- `sf` e `geodata` para análise espacial e geoprocessamento.
 
 ---
 
 ## Como executar
 
-Com o R instalado, basta abrir o arquivo `pokemon.R` e executar o script.
-
-Caso os pacotes ainda não estejam instalados, execute:
-
-```r
-install.packages(c(
-  "ggplot2",
-  "dplyr",
-  "readr",
-  "ggrepel"
-))
-```
-
-Depois, execute o script normalmente.
-
-O programa irá:
-
-1. carregar o arquivo `pokemon.csv`;
-2. preparar os atributos;
-3. padronizar os dados;
-4. executar o K-means;
-5. identificar e resumir os clusters;
-6. classificar os grupos;
-7. selecionar os 10 Pokémon com maior Total Stats;
-8. gerar o gráfico;
-9. criar a pasta `output/`, caso ela não exista;
-10. salvar as figuras em PNG e PDF.
+1. Certifique-se de que o R e os pacotes necessários estejam instalados.
+2. Acesse o script desejado, como `teste.R` ou os arquivos dentro de `extract_pdf/`.
+3. Ajuste os caminhos locais dos arquivos, caso necessário.
+4. Execute o código em sequência para gerar os outputs em `extract_pdf/data/processed/` e em `output/`.
 
 ---
 
 ## Observação
 
-A classificação **Fraco, Médio, Forte e Lendário** é apenas uma interpretação dos clusters encontrados pelo K-means. O algoritmo não recebe essas categorias como informação de entrada.
-
-Em outras palavras, o modelo não "sabe" o que é um Pokémon lendário. Ele apenas identifica grupos de Pokémon com atributos estatisticamente semelhantes. A classificação foi atribuída posteriormente com base na média dos atributos de cada cluster.
-
-Essa foi justamente a parte mais divertida do exercício: deixar o algoritmo encontrar os grupos e depois tentar interpretar o que eles representam.
+Este repositório representa um ambiente acadêmico de desenvolvimento e experimentação. Ele contém arquivos de estudo, scripts em andamento e dados processados usados como suporte para análise e documentação do curso.
 
 ---
 
-## Objetivo do exercício
+## Licença e uso
 
-Mais do que classificar Pokémon, o objetivo é praticar um fluxo simples de modelagem computacional:
-
-**dados → preparação → padronização → aprendizado não supervisionado → interpretação → visualização**
-
-A ideia é mostrar como uma técnica de agrupamento pode ser aplicada a um conjunto de dados real e transformada em uma visualização que facilite a interpretação dos resultados.
+O conteúdo deste repositório é destinado a fins acadêmicos e de estudo. A reprodução ou reutilização deve respeitar o contexto didático e os materiais originais utilizados na disciplina.
